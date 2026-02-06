@@ -23,7 +23,7 @@ if ( !class_exists( 'Livemesh_SiteOrigin_Widgets' ) ) {
             if ( !isset( self::$instance ) && !self::$instance instanceof Livemesh_SiteOrigin_Widgets ) {
                 self::$instance = new Livemesh_SiteOrigin_Widgets();
                 self::$instance->setup_debug_constants();
-                add_action( 'plugins_loaded', array(self::$instance, 'load_plugin_textdomain') );
+                add_action( 'init', array(self::$instance, 'load_plugin_textdomain') );
                 self::$instance->includes();
                 self::$instance->hooks();
                 self::$instance->template_hooks();
@@ -39,7 +39,7 @@ if ( !class_exists( 'Livemesh_SiteOrigin_Widgets' ) ) {
          */
         public function __clone() {
             // Cloning instances of the class is forbidden
-            _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'livemesh-so-widgets' ), '3.9.1' );
+            _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'livemesh-so-widgets' ), '3.9.2' );
         }
 
         /**
@@ -48,7 +48,7 @@ if ( !class_exists( 'Livemesh_SiteOrigin_Widgets' ) ) {
          */
         public function __wakeup() {
             // Unserializing instances of the class is forbidden
-            _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'livemesh-so-widgets' ), '3.9.1' );
+            _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'livemesh-so-widgets' ), '3.9.2' );
         }
 
         private function setup_debug_constants() {
@@ -90,6 +90,10 @@ if ( !class_exists( 'Livemesh_SiteOrigin_Widgets' ) ) {
          * them to allow the plugin to be localised
          */
         public function load_plugin_textdomain() {
+            // If textdomain already loaded, bail early
+            if ( isset( $GLOBALS['l10n']['livemesh-so-widgets'] ) ) {
+                return;
+            }
             $lang_dir = apply_filters( 'lsow_so_widgets_lang_dir', trailingslashit( LSOW_PLUGIN_DIR . 'languages' ) );
             // Traditional WordPress plugin locale filter
             $locale = apply_filters( 'plugin_locale', get_locale(), 'livemesh-so-widgets' );

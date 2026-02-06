@@ -68,6 +68,20 @@ if ($settings['background']['bg_type'] == 'youtube') {
 
     <?php
 
+    $allowed_tags = array(
+        'a' => array(
+            'href'   => true,
+            'title'  => true,
+            'target' => true,
+            'rel'    => true,
+        ),
+        'strong' => array(),
+        'b'      => array(),
+        'big'    => array(),
+        'em'     => array(),   // optional
+        'i'      => array(),   // optional
+    );
+
     $overlay = $settings['background']['overlay'];
 
     if (!empty($overlay['overlay_color'])) :
@@ -89,7 +103,7 @@ if ($settings['background']['bg_type'] == 'youtube') {
 
             <div class="lsow-standard-header">
 
-                <?php echo empty($settings['standard_header']['subheading']) ? '' : '<div class="lsow-subheading">' . htmlspecialchars_decode(esc_html($settings['standard_header']['subheading'])) . '</div>'; ?>
+                <?php echo empty($settings['standard_header']['subheading']) ? '' : '<div class="lsow-subheading">' . wp_kses( $settings['standard_header']['subheading'], $allowed_tags ) . '</div>'; ?>
 
                 <?php echo empty($settings['standard_header']['heading']) ? '' : '<h3 class="lsow-heading">' . wp_kses_post($settings['standard_header']['heading']) . '</h3>'; ?>
 

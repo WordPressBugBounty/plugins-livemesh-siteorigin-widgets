@@ -5,7 +5,7 @@ Contributors: livemesh, freemius
 Tags: widget, siteorigin, siteorigin widgets bundle, siteorigin page builder, siteorigin widgets, grid, gallery, video background, portfolio, carousel, shortcode, tabs, admin, plugin, page
 Requires at least: 5.8
 Tested up to: 6.8
-Stable Tag: 3.9.1
+Stable Tag: 3.9.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,10 @@ Pls install and activate the <a href="https://wordpress.org/plugins/portfolio-po
 
 == Changelog ==
 
+
+= 3.9.2 =
+* Escaping the data output for hero image and pricing plan widgets
+* Freemius SDK update to 2.12.2
 
 = 3.9.1 =
 * Freemius SDK update to 2.11.0

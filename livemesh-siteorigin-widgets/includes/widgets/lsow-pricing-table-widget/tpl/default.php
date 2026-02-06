@@ -58,7 +58,7 @@ foreach ($settings['pricing_plans'] as $pricing_plan) :
 
         $child_output .= '<div class="lsow-title">';
 
-        $child_output .= htmlspecialchars_decode(wp_kses_post($pricing_item['title']));
+        $child_output .= wp_kses_post($pricing_item['title']);
 
         $child_output .= '</div>';
 
@@ -70,7 +70,7 @@ foreach ($settings['pricing_plans'] as $pricing_plan) :
 
         $child_output .= '<div class="lsow-value">';
 
-        $child_output .= htmlspecialchars_decode(wp_kses_post($pricing_item['value']));
+        $child_output .= wp_kses_post($pricing_item['value']);
 
         $child_output .= '</div>';
 
